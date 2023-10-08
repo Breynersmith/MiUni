@@ -13,17 +13,12 @@ path('admin/', admin.site.urls),
 
 # URL para mostrar la pagna de inicio
 path('', Home),
-
 path('estudiantes/', Estudiantes, name='estudiantes'), 
-path('carreras/', Carreras),
-path('cursos/', Cursos),
-path('matriculas/', Matriculas),
-
-# URL para mostrar el formulario de contacto
-path('contacto/', formularioContacto),
-
-# URL para procesar el formulario de contacto (enviar correo)
-path('contactar/', contactar)
+path('carreras/', Carreras, name='carreras'),
+path('cursos/', Cursos, name='cursos'),
+path('matriculas/', Matriculas, name='matriculas'),
+path('contacto/', formularioContacto, name='contacto'),
+path('contactar/', contactar, name='contactar'),
 ]
 
 

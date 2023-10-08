@@ -4,7 +4,7 @@ from django.conf import settings
 from django.shortcuts import redirect, render
 # Importa la función 'send_mail' para enviar correos electrónicos
 from django.core.mail import send_mail
-from .formularios import EstudianteForm
+from .formularios import EstudianteForm, CarreraForm, CursoForm, MatriculaForm
 from .models import Estudiante, Carrera, Curso, Matricula
 
 # Define las vistas de tu aplicación
@@ -59,14 +59,36 @@ def Estudiantes(request):
 
 
 def Carreras(request):
+    if request.method == 'POST':
+        form = CarreraForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('carreras')
+    else:
+        form = CarreraForm()
+
     carreraDB = Carrera.objects.all()
-    return render(request, 'carreras.html', {'carreraDB': carreraDB})
+    return render(request, 'carreras.html', {'carreraDB': carreraDB, 'form': form})
 
 def Cursos(request):
+    if request.method == 'POST':
+        form = CursoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cursos')
+    else:
+        form = CursoForm()
     cursoDB = Curso.objects.all()
-    return render(request, 'cursos.html', {'cursoDB': cursoDB})
+    return render(request, 'cursos.html', {'cursoDB': cursoDB, 'form': form})
 
 def Matriculas(request):
+    if request.method == 'POST':
+        form = MatriculaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('matriculas')
+    else:
+        form = MatriculaForm()
     matriculaDB = Matricula.objects.all()
-    return render(request, 'matriculas.html', {'matriculaDB': matriculaDB})
+    return render(request, 'matriculas.html', {'matriculaDB': matriculaDB, 'form': form})
 

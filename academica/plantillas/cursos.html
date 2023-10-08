@@ -1,27 +1,57 @@
 {% extends 'home.html'%}
-{% block title %}Cursos{% endblock %}
+{% block title %}Cursos
+{% endblock %}
 
 {% block content %}
 
-<div class="mt-10">
-    <h4 class="text-xl text-center font-medium">Cursos</h4>
-<table class="text-xs text-center w-[100%]">
-    <tr class="border-2 border-gray-800">
-        <th class="text-[10px] border-r-2 border-gray-600">Código</th>
-        <th class="text-[10px] border-r-2 border-gray-600">Nombre</th>
-        <th class="text-[10px] border-r-2 border-gray-600">Creditos</th>
-        <th class="text-[10px] border-r-2 border-gray-600">Docente</th>
-    </tr>
-    {% for curso in cursoDB %}
-    <tr class="border-2 border-gray-800">
-        <td class="text-[10px] border-r-2 border-gray-600">{{curso.codigo}}</td>
-        <td class="text-[10px] border-r-2 border-gray-600">{{curso.nombre}}</td>
-        <td class="text-[10px] border-r-2 border-gray-600">{{curso.creditos}}</td>
-        <td class="text-[10px] border-r-2 border-gray-600">{{curso.docente}}</td>
-    </tr>
-    {% endfor %}
-</table>
-</div>
+    <div class="mt-10">
+        <h4 class="text-xl text-center font-medium">Cursos</h4>
+        <table class="text-xs text-center w-[100%]">
+            <tr class="border-2 border-gray-800">
+                <th class="text-[10px] border-r-2 border-gray-600">Código</th>
+                <th class="text-[10px] border-r-2 border-gray-600">Nombre</th>
+                <th class="text-[10px] border-r-2 border-gray-600">Creditos</th>
+                <th class="text-[10px] border-r-2 border-gray-600">Docente</th>
+            </tr>
+            {% for curso in cursoDB %}
+                <tr class="border-2 border-gray-800">
+                    <td class="text-[10px] border-r-2 border-gray-600">{{curso.codigo}}</td>
+                    <td class="border-2 border-gray-600">{{curso.nombre}}</td>
+                    <td class="border-2 border-gray-600">{{curso.creditos}}</td>
+                    <td class="border-2 border-gray-600">{{curso.docente}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="mt-10">
+        <h4 class="text-xl text-center font-medium">Crear Curso</h4>
+        <form method="POST" class="text-xs flex flex-col  gap-2 justify-center ">
+            {% csrf_token %}
+            <div class="flex justify-center gap-2">
+                <p>
+                    <label for="id_codigo">Codigo:</label>
+                    <input type="text" name="codigo" maxlength="6" required="" id="id_codigo">
+                </p>
+                <p>
+                    <label for="id_nombre">Nombre:</label>
+                    <input type="text" name="nombre" maxlength="50" required="" id="id_nombre">
+                </p>
+            </div>
+           <div class="flex justify-center gap-2">
+            <p>
+                <label for="id_creditos">Creditos:</label>
+                <input type="number" name="creditos" min="0" required="" id="id_creditos">
+            </p>
+            <p>
+                <label for="id_docente">Docente:</label>
+                <input type="text" name="docente" maxlength="100" required="" id="id_docente">
+            </p>
+           </div>
+           <input class="text-center" type="submit" value="Agregar">
+        </form>
+    </div>
 
 
-{% endblock %}
+                {% endblock %}
+            </p>
+        </p>

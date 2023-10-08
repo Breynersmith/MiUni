@@ -44,8 +44,7 @@
 <div class="text-xs mt-10 text-center">
   <h1 class="font-medium text-xl">Agregar Estudiante</h1>
   <form method="POST" class="">
-    <input type="hidden" name="csrfmiddlewaretoken"
-      value="TWtKrBoCsr7dszouzUl4FDD7IkI1POBtpxydSzShdreqK9xd0xqTtDkbR1SWlDc6">
+    {% csrf_token %}
     <div class="flex gap-2">
       <div>
         <label for="id_dni">cedula:</label>
