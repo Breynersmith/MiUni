@@ -1,16 +1,24 @@
 # Importa las configuraciones de Django desde settings.py
 from django.conf import settings
 # Importa la función 'render' para renderizar plantillas HTML
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 # Importa la función 'send_mail' para enviar correos electrónicos
 from django.core.mail import send_mail
+from .formularios import EstudianteForm
+from .models import Estudiante, Carrera, Curso, Matricula
 
 # Define las vistas de tu aplicación
 
 # Vista para la página de inicio
-def home(request):
+def Home(request):
+
+    estudianteDB = Estudiante.objects.all()
+    carreraDB = Carrera.objects.all()
+    cursoDB = Curso.objects.all()
+    matriculaDB = Matricula.objects.all()
+
     # Renderiza la plantilla 'home.html' y la muestra en el navegador
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'estudianteDB': estudianteDB, 'carreraDB': carreraDB, 'cursoDB': cursoDB, 'matriculaDB': matriculaDB})
 
 # Vista para el formulario de contacto
 def formularioContacto(request):
@@ -37,3 +45,28 @@ def contactar(request):
     
     # Si la solicitud no es un POST, vuelve a mostrar el formulario
     return render(request, 'formContacto.html')
+
+def Estudiantes(request):
+    if request.method == 'POST':
+        form = EstudianteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('estudiantes')
+    else:
+        form = EstudianteForm()
+    estudianteDB = Estudiante.objects.all()
+    return render(request, 'estudiantes.html', {'estudianteDB': estudianteDB, 'form': form})
+
+
+def Carreras(request):
+    carreraDB = Carrera.objects.all()
+    return render(request, 'carreras.html', {'carreraDB': carreraDB})
+
+def Cursos(request):
+    cursoDB = Curso.objects.all()
+    return render(request, 'cursos.html', {'cursoDB': cursoDB})
+
+def Matriculas(request):
+    matriculaDB = Matricula.objects.all()
+    return render(request, 'matriculas.html', {'matriculaDB': matriculaDB})
+

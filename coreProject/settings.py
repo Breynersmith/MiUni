@@ -24,7 +24,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'academica',  # Agrega tu aplicación personalizada 'academica' aquí
+    'academica',
+    'tailwind',
+    'theme',
+    
 ]
 
 # Middleware de Django utilizado para procesar solicitudes y respuestas
@@ -106,3 +109,13 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'breynersmithustariz@gmail.com'  # Tu dirección de correo electrónico de Gmail
 EMAIL_HOST_PASSWORD = 'wnge ggmj afro gnok'  # Tu contraseña de Gmail (asegúrate de mantenerla segura)
+
+
+TAILWIND_APP_NAME = 'theme'  # Especifica el nombre de la aplicación Tailwind
+
+NPM_BIN_PATH = r"C:\Users\Breyner\AppData\Roaming\npm\npm.cmd"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+

@@ -1,0 +1,103 @@
+{% extends 'home.html'%}
+{% block title %}Estudiantes
+{% endblock %}
+
+{% block content %}
+<div class="mt-10">
+  <h4 class="text-xl text-center font-medium">Estudiantes</h4>
+  <table class="text-xs text-center w-[100%]">
+    <tr class="border-2 border-gray-800">
+      <th class="text-[10px] border-r-2 border-gray-600">Cedula</th>
+      <th class="text-[10px] border-r-2 border-gray-600">Primer apellido
+      </th>
+      <th class="text-[10px] border-r-2 border-gray-600">Segundo apellido
+      </th>
+      <th class="text-[10px] border-r-2 border-gray-600">Nombres</th>
+      <th class="text-[10px] border-r-2 border-gray-600">F. Nacimiento</th>
+      <th class="text-[10px] border-r-2 border-gray-600">Sexo</th>
+      <th class="text-[10px] border-r-2 border-gray-600">Carrera</th>
+      <th class="text-[10px] border-r-2 border-gray-600">Vigencia</th>
+    </tr>
+    {% for estudiante in estudianteDB %}
+    <tr class="border-r-2 border-gray-600">
+
+      <td class="border-2 border-gray-600">{{estudiante.dni}}</td>
+      <td class="border-2 border-gray-600">{{estudiante.apellidoPaterno}}</td>
+      <td class="border-2 border-gray-600">{{estudiante.apellidoMaterno}}</td>
+      <td class="border-2 border-gray-600">{{estudiante.nombres}}</td>
+      <td class="border-2 border-gray-600">{{estudiante.fechaNacimiento}}</td>
+      <td class="border-2 border-gray-600">{{estudiante.sexo}}</td>
+      <td class="border-2 border-gray-600">{{estudiante.carrera}}</td>
+      <td class="border-2 border-gray-600">
+        {% if estudiante.vigencia %}
+        Vigente
+        {% else %}
+        No Vigente
+        {% endif %}
+      </td>
+
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="text-xs mt-10 text-center">
+  <h1 class="font-medium text-xl">Agregar Estudiante</h1>
+  <form method="POST" class="">
+    <input type="hidden" name="csrfmiddlewaretoken"
+      value="TWtKrBoCsr7dszouzUl4FDD7IkI1POBtpxydSzShdreqK9xd0xqTtDkbR1SWlDc6">
+    <div class="flex gap-2">
+      <div>
+        <label for="id_dni">cedula:</label>
+        <input type="text" name="dni" maxlength="11" required="" id="id_dni" class="w-10"></div>
+      <p>
+        <label for="id_apellidoPaterno">Primer Apellido:</label>
+        <input type="text" name="apellidoPaterno" maxlength="35" required="" id="id_apellidoPaterno"></p>
+  
+      <p>
+        <label for="id_apellidoMaterno">Segundo Apellido:</label>
+        <input type="text" name="apellidoMaterno" maxlength="35" required="" id="id_apellidoMaterno"></p>
+  
+      <p>
+        <label for="id_nombres">Nombres:</label>
+        <input type="text" name="nombres" maxlength="50" required="" id="id_nombres"></p>
+  
+    </div>
+    <div class="flex gap-4">
+      <p>
+        <label for="id_fechaNacimiento">F. Nacimiento:</label>
+        <input type="text" name="fechaNacimiento" required="" id="id_fechaNacimiento"></p>
+  
+      <p>
+        <label for="id_sexo">Sexo:</label>
+        <select name="sexo" id="id_sexo">
+          <option value="M" selected="">Masculino</option>
+          <option value="F">Femenino</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="id_carrera">Carrera:</label>
+        <select name="carrera" required="" id="id_carrera">
+          <option value="" selected="">---------</option>
+          <option value="001">Ingenieria de sistemas (duracion: 5 año(s))</option>
+          <option value="002">Diseño de modas (duracion: 3 año(s))</option>
+          <option value="003">Ingenieria de Telecomunicaciones (duracion: 6 año(s))</option>
+        </select>
+      </p>
+    </div>
+
+    <p >
+      <label for="id_vigencia" class="pt-6">Vigencia:</label>
+      <input type="checkbox" name="vigencia" id="id_vigencia" checked=""></p>
+
+    <input type="submit" value="agregar" class="border-2 border-gray-600 
+     px-5 cursor-pointer">
+  </form>
+</div>
+{% endblock %}
+</p>
+</p>
+</p>
+</p>
+</p>

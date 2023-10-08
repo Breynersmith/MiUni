@@ -1,0 +1,55 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <script src="https://kit.fontawesome.com/161b6953d6.js" crossorigin="anonymous"></script>
+                <title>
+                    {% block title %}{% endblock %}
+                </title>
+                {% tailwind_css %}
+            </head>
+            <body class="w-[100%] min-h-[100vh] flex flex-col justify-between">
+                <header class="bg-gray-900 min-h-[10vh]">
+                    <div class="bg-white px-12 flex justify-end gap-2 py-1">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-square-github"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <div class="flex justify-between px-12 text-white py-2">
+                        <h1 class=" font-bold ">MiUni</h1>
+                        <nav>
+                            <ul class="flex flex-grow gap-6">
+                                <li>
+                                    <a href="/estudiantes/">Estudiantes</a>
+                                </li>
+                                <li>
+                                    <a href="/carreras/">Carreras</a>
+                                </li>
+                                <li>
+                                    <a href="/cursos/">Cursos</a>
+                                </li>
+                                <li>
+                                    <a href="/matriculas/">Matriculas</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
+
+                <main class="min-h-[80vh] bg-gray-100 w-[80%] mx-auto flex flex-col justify-start"> {% block content %}{% endblock %}
+                    </main>
+
+                    <footer class="min-h-[5vh] bg-gray-900 text-white">
+                        by
+                        <span>
+                            Breyner Ustariz
+                        </span>
+                    </footer>
+
+
+                </body>
+            </html>
+        </head>
+    </html>

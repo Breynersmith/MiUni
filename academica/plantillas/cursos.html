@@ -1,0 +1,27 @@
+{% extends 'home.html'%}
+{% block title %}Cursos{% endblock %}
+
+{% block content %}
+
+<div class="mt-10">
+    <h4 class="text-xl text-center font-medium">Cursos</h4>
+<table class="text-xs text-center w-[100%]">
+    <tr class="border-2 border-gray-800">
+        <th class="text-[10px] border-r-2 border-gray-600">Código</th>
+        <th class="text-[10px] border-r-2 border-gray-600">Nombre</th>
+        <th class="text-[10px] border-r-2 border-gray-600">Creditos</th>
+        <th class="text-[10px] border-r-2 border-gray-600">Docente</th>
+    </tr>
+    {% for curso in cursoDB %}
+    <tr class="border-2 border-gray-800">
+        <td class="text-[10px] border-r-2 border-gray-600">{{curso.codigo}}</td>
+        <td class="text-[10px] border-r-2 border-gray-600">{{curso.nombre}}</td>
+        <td class="text-[10px] border-r-2 border-gray-600">{{curso.creditos}}</td>
+        <td class="text-[10px] border-r-2 border-gray-600">{{curso.docente}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+
+{% endblock %}
