@@ -1,24 +1,54 @@
 {% extends 'home.html'%}
-{% block title %}Contactenos{% endblock %}
+{% block title %}Contactenos
+{% endblock %}
 
 {% block content %}
 
-<div class="mt-10">
-    <h4 class="text-xl text-center font-medium">Matriculas</h4>
-<table class="text-xs text-center w-[100%]">
-    <tr class="border-2 border-gray-800">
-        <th class="text-[10px] border-r-2 border-gray-600">Estudiante</th>
-        <th class="text-[10px] border-r-2 border-gray-600">Código</th>
-        <th class="text-[10px] border-r-2 border-gray-600">Fecha</th>
-    </tr>
-    {% for matricula in matriculaDB %}
-    <tr class="border-2 border-gray-600">
-        <td class="border-2 border-gray-600">{{matricula.estudiante}}</td>
-        <td class="border-2 border-gray-600">{{matricula.curso}}</td>
-        <td class="border-2 border-gray-600">{{matricula.fechaMatricula}}</td>
-    </tr>
-    {% endfor %}
-</table>
-</div>
+    <div class="mt-10">
+        <h4 class="text-xl text-center font-medium">Matriculas</h4>
+        <table class="text-xs text-center w-[100%]">
+            <tr class="border-2 border-gray-800">
+                <th class="text-[10px] border-r-2 border-gray-600">Estudiante</th>
+                <th class="text-[10px] border-r-2 border-gray-600">Código</th>
+                <th class="text-[10px] border-r-2 border-gray-600">Fecha</th>
+            </tr>
+            {% for matricula in matriculaDB %}
+                <tr class="border-2 border-gray-600">
+                    <td class="border-2 border-gray-600">{{matricula.estudiante}}</td>
+                    <td class="border-2 border-gray-600">{{matricula.curso}}</td>
+                    <td class="border-2 border-gray-600">{{matricula.fechaMatricula}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 
-{% endblock %}
+    <div>
+        <h4 class="text-xl text-center font-medium">Estudiantes</h4>
+        <form method="POST" class="text-xs flex flex-col  gap-2 justify-center">
+            {% csrf_token %}
+                <p class="flex justify-between">
+                    <label for="id_estudiante">Estudiante:</label>
+                    <select name="estudiante" required="" id="id_estudiante">
+                        <option value="" selected="">---------</option>
+                        <option value="1127588500">Ustariz Hoyos Breyner Esmith / carrera: Ingenieria de sistemas (duracion: 5 año(s)) / VIGENTE</option>
+                        <option value="49742409">Hoyos Gonzalez Yunis del Carmen / carrera: Diseño de modas (duracion: 3 año(s)) / VIGENTE</option>
+                        <option value="1065809015">Ustariz Manzano Eder Enrique / carrera: Ingenieria de Telecomunicaciones (duracion: 6 año(s)) / VIGENTE</option>
+                        <option value="1004423599">Ustariz Hoyos Jonathan / carrera: Ingenieria de Telecomunicaciones (duracion: 6 año(s)) / VIGENTE</option>
+                        <option value="1065452356">Casta jota luis / carrera: Diseño de modas (duracion: 3 año(s)) / VIGENTE</option>
+                    </select>
+                </p>
+                <p class="flex justify-between">
+                    <label for="id_curso" >Curso:</label>
+                    <select name="curso" required="" id="id_curso">
+                        <option value="" selected="">---------</option>
+                        <option value="00992">00992  (Informatica) / Docente: Dylan Esmith Ustariz Aragon</option>
+                        <option value="00993">00993  (Ingles) / Docente: Abigail Ustariz Aragon</option>
+                        <option value="00994">00994  (ciber seguridad) / Docente: Bill gates</option>
+                        <option value="00995">00995  (Matematicas) / Docente: Alan Helper</option>
+                    </select>
+                </p>
+                <input class="text-center" type="submit" value="Agregar">
+            </form>
+            </div>
+
+        {% endblock %}
