@@ -1,17 +1,27 @@
-# Importa la clase 'Path' del módulo 'pathlib' para manejar rutas de archivos y directorios
+import environ
+import os
+
+
 from pathlib import Path
+
+env = environ.Env()
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+DEBUG = env('DEBUG')
+
+
 
 # Define la ruta base del proyecto como la ruta del archivo actual (settings.py) resuelta hacia arriba dos veces
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Configuración rápida para desarrollo - no apta para producción
-# Ver https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# ADVERTENCIA DE SEGURIDAD: ¡Mantén la clave secreta utilizada en producción en secreto!
-SECRET_KEY = 'django-insecure-%d5mqf4k%ckv=j_*fps3lb*l2a2e++*i$rek4w*ju+l5($pyi-'
+SECRET_KEY = env('SECRET_KEY')
 
 # ADVERTENCIA DE SEGURIDAD: No ejecutes con el modo de depuración activado en producción
-DEBUG = True
+
 
 # Lista de hosts permitidos para esta aplicación (en blanco para permitir todos los hosts en desarrollo)
 ALLOWED_HOSTS = []
@@ -106,9 +116,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Servidor de correo saliente de Gmail
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'breynersmithustariz@gmail.com'  # Tu dirección de correo electrónico de Gmail
-EMAIL_HOST_PASSWORD = 'wnge ggmj afro gnok'  # Tu contraseña de Gmail (asegúrate de mantenerla segura)
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')  # Tu dirección de correo electrónico de Gmail
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')  # Tu contraseña de Gmail (asegúrate de mantenerla segura)
 
 
 TAILWIND_APP_NAME = 'theme'  # Especifica el nombre de la aplicación Tailwind
